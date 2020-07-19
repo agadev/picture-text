@@ -5,6 +5,8 @@ This is a Flutter app for extracting text from images using **text recognition**
 This is fully functional app where user can take picture from either using camera or select image from device gallery and then perform text extraction on it. Once text is extracted it can be shared/copied to clipboard using sharing functionality of device.
 This app is built using [tutorial](https://blog.codemagic.io/text-recognition-using-firebase-ml-kit-flutter) written by Souvik Biswas.
 
+Ready to use apk is available under Release Section for android phones.
+
 
 
 
