@@ -37,28 +37,18 @@ class _DetailScreenState extends State<DetailScreen> {
     final VisionText visionText =
         await textRecognizer.processImage(visionImage);
 
-    String pattern =
-        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
-    RegExp regEx = RegExp(pattern);
-
-    String mailAddress = "";
+    String extractedText = "";
     int lineNum = 0;
     for (TextBlock block in visionText.blocks) {
       for (TextLine line in block.lines) {
         print('${++lineNum} ${line.text}');
-        mailAddress += line.text + '\n';
-        if (regEx.hasMatch(line.text)) {
-          //mailAddress += line.text + '\n';
-          for (TextElement element in line.elements) {
-            _elements.add(element);
-          }
-        }
+        extractedText += line.text + '\n';
       }
     }
 
     if (this.mounted) {
       setState(() {
-        recognizedText = mailAddress;
+        recognizedText = extractedText;
       });
     }
   }
@@ -110,12 +100,6 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                         fit: BoxFit.fitHeight,
                       ),
-//                      AspectRatio(
-//                        aspectRatio: _imageSize.aspectRatio,
-//                        child: Image.file(
-//                          File(path),
-//                        ),
-//                      ),
                     ),
                   ),
                 ),
